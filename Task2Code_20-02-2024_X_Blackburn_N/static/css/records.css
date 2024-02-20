@@ -1,0 +1,28 @@
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sub-container {
+    position: relative;
+    right: 5rem;
+}
+
+.card-container {
+    display: grid;
+    width: 60%;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.sticky-container {
+    position: relative;
+    right: 8rem;
+}
+
+.loadmorebtn {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: 30%;
+}
