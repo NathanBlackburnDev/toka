@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Eating plan{% endblock %}
+{% block content %}
+
+<link rel="stylesheet" href="../static/css/eating.css">
+<script src="../static/javascript/bullet_points.js"></script>
+
+<h1 style="text-align: center; margin-top: 1rem; margin-bottom: 1rem;">Your eating plans</h1>
+
+<div class="main-container">
+        <div class="eating-plan">
+            {% set num = 0 %}
+            {% if eating_plans %}
+                {% for plan in eating_plans %}
+                    {% set num = num + 1 %}
+                    <div class="plan">
+                        <h2>Eating plan {{ num }}</h2>
+                        <p>Breakfast: {{ plan[2] }}</p>
+                        <p>Lunch: {{ plan[3] }}</p>
+                        <p>Dinner: {{ plan[4] }}</p>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <a style="color: #0b5ed7; text-decoration: none;" href="/view_eating_plan/{{ plan[0] }}">View plan</a>
+                            <p>|</p>
+                            <a style="color: #0b5ed7; text-decoration: none;" href="/update_eating_plan/{{ plan[0] }}">Update</a>
+                            <p>|</p>
+                            <a style="color: #0b5ed7; text-decoration: none;" href="/delete_eating_plan/{{ plan[0] }}"> Delete</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <h2>Create a eating plan to get started</h2>
+            {% endif %}
+        </div>
+
+        <div class="form-container-eating">
+            <form method="POST">
+
+                <div class="sub-form">
+                    
+                    <div class="non-text-field">
+                        <div class="mb-3">
+                            <label for="exampleInputUsername" class="form-label">Breakfast</label>
+                            <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="emailHelp" name="breakfast" placeholder="Toast" {% if eating_plan_data %}value="{{ eating_plan_data[2] }}"{% endif %}>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="exampleInputUsername" class="form-label">Lunch</label>
+                            <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="emailHelp" name="lunch" placeholder="Chicken and rice" {% if eating_plan_data %}value="{{ eating_plan_data[3] }}"{% endif %}>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="exampleInputUsername" class="form-label">Dinner</label>
+                            <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="emailHelp" name="dinner" placeholder="Beef and potatoes" {% if eating_plan_data %}value="{{ eating_plan_data[4] }}"{% endif %}>
+                        </div>
+
+                        <label for="customRange1" class="form-label">Litres of water (1-10)</label>
+                        <input type="range" class="form-range" id="customRange1" min="1" max="10" name="liquid">
+                    </div>
+
+                    <div class="textboxes">
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Snacks (1 per line)</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="snacks" onkeyup="handleInput(event)" {% if eating_plan_data %}value="{{ eating_plan_data[-3] }}"{% endif %}></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Notes (optional)</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="notes" {% if eating_plan_data %}value="{{ eating_plan_data[-1] }}"{% endif %}></textarea>
+                        </div>
+                    </div>
+
+                </div>
+
+                <center>
+                    <button type="submit" class="btn btn-primary" style="width: 40%;">Create plan</button>
+                </center>
+            </form>
+        </div>
+</div>
+
+{% endblock %}

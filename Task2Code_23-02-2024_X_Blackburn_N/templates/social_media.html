@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}{% endblock %}
+{% block content %}
+
+<link rel="stylesheet" href="../static/css/social_media.css">
+
+<h1 style="text-align: center; margin-top: 2rem; margin-bottom: 2rem;">Posts by users</h1>
+
+<div class="main-container">
+    <div class="sub-container">
+        {% if posts %}
+            {% for post in posts %}
+                <div class="card" style="width: 22rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post[2] }}</h5>
+                        <p class="card-text">{{ post[2] }}</p>
+                        <p>Posted by: {{ post[5] }}</p>
+                        {% if user_id == post[1] %}
+                            <a style="color: #0b5ed7; text-decoration: none;" href="/delete_post/{{ post[0] }}">Delete your post</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+<center>
+    {% if query_len <= records %}
+        <button type="submit" class="btn btn-primary" id="submitButton" href="/load_more_social/{{ records }}" style="margin-bottom: 2rem; margin-top: 2rem;">Load more</button>
+    {% endif %}
+</center>
+
+{% endblock %}

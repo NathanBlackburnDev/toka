@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}View eating plan{% endblock %}
+{% block content %}
+
+<link rel="stylesheet" href="../static/css/full_plan.css">
+
+<div class="main-container">
+    <div class="sub-container">
+        {% set num = 0 %}
+        {% for item in plan %}
+            {% set num = num + 1 %}
+            <h1>Eating plan {{ num }}</h1>
+            <h4>Breakfast: {{ item[2] }}</h4>
+            <h4>Lunch: {{ item[3] }}</h4>
+            <h4>Dinner: {{ item[4] }}</h4>
+            <h4>Snacks:</h4>
+            {% set snacks = item[5] %}
+            {% set snack_points = snacks.split('\n') %}
+            {% for snack in snack_points %}
+                <p>{{ snack }}</p>
+            {% endfor %}
+            <h4>Notes:</h4>
+            <p>{{ item[-1] }}</p>
+        {% endfor %}
+        <a style="color: #0b5ed7; text-decoration: none;" href="{{ url_for('eating_plan') }}">Go back</a>
+    </div>
+</div>
+
+{% endblock %}

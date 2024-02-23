@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Create a post{% endblock %}
+{% block content %}
+
+<h1 style="text-align: center; margin-top: 2rem; margin-bottom: 2rem;">Create a post</h1>
+
+<div class="main-container" style="display: flex; justify-content: center; align-items: center; position: relative; top: 5rem;">
+    <div class="sub-container" style="width: 100%; display: flex; justify-content: center;">
+        <form method="POST" style="width: 40%;">
+
+            <div class="mb-3">
+                <label for="exampleInputUsername" class="form-label">Post title</label>
+                <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="emailHelp" name="title" placeholder="I lost over 10 kg" {% if post %}value="{{ post[0] }}"{% endif %}>
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Post description</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="desc" {% if post %}value="{{ post[1] }}"{% endif %}></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" id="submitButton">Create post</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+

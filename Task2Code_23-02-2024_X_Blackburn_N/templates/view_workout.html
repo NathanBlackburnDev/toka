@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}View workout plan{% endblock %}
+{% block content %}
+
+<link rel="stylesheet" href="../static/css/full_plan.css">
+
+<div class="main-container">
+    <div class="sub-container">
+        {% for item in plan %}
+            <h1>{{ item[2] }} plan</h1>
+            <h4>Workout type: {{ item[3] }}</h4>
+            <h4>Workout length: {{ item[4] }}</h4>
+            <h4>Workout intensity: {{ item[5] }}</h4>
+            <h4>Time to workout: {{ item[-1] }}</h4>
+            <h4>Notes:</h4>
+            <p>{{ item[-2] }}</p>
+        {% endfor %}
+        <a style="color: #0b5ed7; text-decoration: none;" href="{{ url_for('workout_plan') }}">Go back</a>
+    </div>
+</div>
+
+{% endblock %}

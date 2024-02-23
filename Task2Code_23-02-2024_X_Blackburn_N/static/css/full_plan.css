@@ -1,0 +1,6 @@
+.main-container {
+    height: 87vh;
+    align-items: center;
+    display: flex;
+    justify-content: center
+}

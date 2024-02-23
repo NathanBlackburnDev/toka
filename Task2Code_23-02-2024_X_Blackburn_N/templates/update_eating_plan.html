@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Update eating plan{% endblock %}
+{% block content %}
+
+<link rel="stylesheet" href="../static/css/update_eating.css">
+<script src="../static/javascript/bullet_points.js"></script>
+
+<h1 style="text-align: center; margin-top: 2rem;">Update eating plan</h1>
+
+<div class="form-container-eating">
+    <form method="POST">
+
+        <div class="sub-form">
+            
+            <div class="non-text-field">
+                <div class="mb-3">
+                    <label for="exampleInputUsername" class="form-label">Breakfast</label>
+                    <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="emailHelp" name="breakfast" placeholder="Toast" {% if eating_plan_data %}value="{{ eating_plan_data[0] }}"{% endif %}>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputUsername" class="form-label">Lunch</label>
+                    <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="emailHelp" name="lunch" placeholder="Chicken and rice" {% if eating_plan_data %}value="{{ eating_plan_data[1] }}"{% endif %}>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputUsername" class="form-label">Dinner</label>
+                    <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="emailHelp" name="dinner" placeholder="Beef and potatoes" {% if eating_plan_data %}value="{{ eating_plan_data[2] }}"{% endif %}>
+                </div>
+
+                <label for="customRange1" class="form-label">Litres of water (1-10)</label>
+                <input type="range" class="form-range" id="customRange1" min="1" max="10" name="liquid">
+            </div>
+
+            <div class="textboxes">
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Snacks (1 per line)</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="snacks" onkeyup="handleInput(event)" {% if eating_plan_data %}value="{{ eating_plan_data[3] }}"{% endif %}></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Notes (optional)</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="notes" {% if eating_plan_data %}value="{{ eating_plan_data[-1] }}"{% endif %}></textarea>
+                </div>
+            </div>
+
+        </div>
+
+        <center>
+            <button type="submit" class="btn btn-primary" style="width: 20%; margin-top: 2rem;">Create plan</button>
+        </center>
+    </form>
+</div>
+
+{% endblock %}
+

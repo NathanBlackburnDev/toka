@@ -1,0 +1,22 @@
+.form-container-eating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 5rem;
+}
+
+form {
+    width: 100%;
+}
+
+.sub-form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+#exampleFormControlTextarea1 {
+    width: 25rem;
+}
