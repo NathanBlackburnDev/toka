@@ -1,0 +1,46 @@
+.main-container {
+    display: flex;
+    position: relative;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    height: 30rem;
+    top: 6rem;
+}
+
+.eating-plan {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: auto;
+    height: 28rem;
+    gap: 0.25rem;
+    width: 25%;
+}
+
+.form-container-eating {
+    width: 40%;
+    height: 100%;
+}
+
+.form-container-eating form {
+    height: 100%;
+}
+
+.sub-form {
+    display: flex;
+    gap: 2rem;
+}
+
+.textboxes {
+    width: 50%;
+}
+
+.plan p {
+    margin-bottom: 0 !important;
+}
+
+.plan {
+    border-bottom: 1px solid black;
+    word-wrap: break-word;
+}

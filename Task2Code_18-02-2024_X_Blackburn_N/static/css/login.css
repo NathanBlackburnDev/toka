@@ -1,0 +1,16 @@
+/* Position and login register form */
+.main-container {
+    height: 89vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sub-container {
+    width: 50%;
+}
+
+.sub-container h1 {
+    position: relative;
+    top: -10vh;
+}

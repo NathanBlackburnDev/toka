@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Content{% endblock %}
+{% block content %}
+
+<!-- YouTube embedded URLs do not allow linked CSS file, so all CSS must happen here -->
+<style>
+  .main-container {
+    height: 89vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+  .sub-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+  }
+</style>
+
+<div class="main-container">
+  <div class="sub-container">
+    {% if query %}
+      {% for record in query %}
+        <div class="card" style="width: 18rem;">
+          <iframe width="400" height="315" src="{{ record[1] }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <div class="card-body">
+            <h5 class="card-title">{{ record[2] }}</h5>
+            <p class="card-text">{{ record[3] }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  {% if query_len <= records %}
+    <center>
+      <a href="/more_content/{{ records }}" class="btn btn-primary loadmorebtn">Load more</a>
+    </center>
+  {% endif %}
+</div>
+
+{% endblock %}

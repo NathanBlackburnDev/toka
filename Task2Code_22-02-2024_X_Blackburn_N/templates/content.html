@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Content{% endblock %}
+{% block content %}
+
+<!-- YouTube embedded URLs do not allow linked CSS file, so all CSS must happen here -->
+<style>
+  .main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sub-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .add {
+    position: relative;
+    left: -4rem;
+  }
+
+  .add1 {
+    position: relative;
+    right: -4rem;
+  }
+</style>
+
+<h1 style="text-align: center; margin-top: 1rem; margin-bottom: 1rem">Premium content</h1>
+
+<div class="main-container">
+
+  <div class="card add" style="width: 14rem;">
+    <img src="../static/images/content-add.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">TK Social Media</h5>
+      <p class="card-text">We have integrated social media onto out platform. Join our community of fitness minded individuals.</p>
+      <a href="{{ url_for('social_media') }}" class="btn btn-primary">Take a look</a>
+    </div>
+  </div>
+
+  <div class="sub-container">
+    {% if query %}
+      {% for record in query %}
+        <div class="card" style="width: 25.10rem;">
+          <iframe width="400" height="315" src="{{ record[1] }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <div class="card-body">
+            <h5 class="card-title">{{ record[2] }}</h5>
+            <p class="card-text">{{ record[3] }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  <div class="card add1" style="width: 14rem;">
+    <img src="../static/images/content-add2.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Training sessions</h5>
+      <p class="card-text">Toka Fitness offers personal 1:1 training sessions with any of our amazing trainers in our Toka Fitness gyms. Try now!</p>
+      <a href="{{ url_for('training_session') }}" class="btn btn-primary">Book one now</a>
+    </div>
+  </div>
+
+</div>
+
+  {% if query_len <= records %}
+    <center style="margin-top: 2rem; margin-bottom: 2rem;">
+      <a href="/more_content/{{ records }}" class="btn btn-primary loadmorebtn">Load more</a>
+    </center>
+  {% endif %}
+
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Book training session{% endblock %}
+{% block content %}
+
+<link rel="stylesheet" href="../static/css/training_session.css">
+
+<h1 class="main-title">Book a training session</h1>
+
+<div class="main-container">
+    <div class="session-container">
+        <h1>Your sessions</h1>
+        {% if sessions %}
+                {% for session in sessions %}
+                    <div class="individual-sessions">
+                        <p>{{ session[-2] }} at {{ session[-3] }}</p>
+                        <p>{{ session[3] }} | {{ session[-1] }}</p>
+                        <a style="color: #0b5ed7; text-decoration: none;" href="/cancel_session/{{ session[0] }}">Cancel session</a>
+                    </div>
+                {% endfor %}
+        {% else %}
+            <h4>No sessions, book a session to see them here!</h4>
+        {% endif %}
+    </div>
+    <div class="sub-container">
+        <form method="POST">
+
+            <h2>Book a session</h2>
+
+            <select class="form-select" aria-label="Default select example" name="instructor_id">
+                <option selected value="None">Select an instructor</option>
+                {% if instructors %}
+                    {% for instructor in instructors %}
+                        <option value="{{ instructor[0] }}">{{ instructor[1] }}</option>
+                    {% endfor %}
+                {% endif %}
+            </select>
+
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Select session date</label>
+                <input type="date" class="form-control" id="exampleInputDate" aria-describedby="emailHelp" name="session_date" {% if training_session_data %}value="{{ training_session_data[1] }}"{% endif %}>
+            </div>
+
+            <select class="form-select" aria-label="Default select example" name="session_time">
+                <option selected value="None">Select an time</option>
+                <option value="10 AM">10 AM</option>
+                <option value="12 AM">12 AM</option>
+                <option value="2 PM">2 PM</option>
+                <option value="4 PM">4 PM</option>
+                <option value="6 PM">6 PM</option>
+                <option value="8 PM">8 PM</option>
+            </select>
+
+            <select class="form-select" aria-label="Default select example" name="session_name">
+                <option selected value="None">Select a session</option>
+                <option value="High intensity fitness">High intensity fitness</option>
+                <option value="Running">Running</option>
+                <option value="Power lifting">Power lifting</option>
+                <option value="Weight lifting">Weight lifting</option>
+                <option value="Cardio">Cardio</option>
+                <option value="Muscle recovery">Muscle recovery</option>
+            </select>
+
+            <select class="form-select" aria-label="Default select example" name="session_location">
+                <option selected value="None">Select a Toka Fitness gym location</option>
+                <option value="123 High Street">123 High Street</option>
+                <option value="123 Extreme Avenue">123 Extreme Avenue</option>
+                <option value="456 Norwich Street">456 Norwich Street</option>
+                <option value="897 City Centre">897 City Centre</option>
+            </select>
+
+            <center><button type="submit" class="btn btn-primary">Book session</button></center>
+        </form>
+    </div>  
+</div>
+
+{% endblock %}

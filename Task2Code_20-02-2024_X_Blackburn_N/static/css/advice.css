@@ -1,0 +1,12 @@
+/* Position and resize register form */
+.main-container {
+    height: 89vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sub-container {
+    width: 50%;
+}

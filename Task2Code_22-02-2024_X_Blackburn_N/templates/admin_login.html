@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Admin Login{% endblock %}
+{% block content %}
+
+<link rel="stylesheet" href="../static/css/login.css">
+
+<div class="main-container">
+    <div class="sub-container">
+        <h1 style="text-align: center;">Sign into admin account</h1>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="exampleInputUsername" class="form-label">Username</label>
+                <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="emailHelp" name="username" placeholder="alan_turing" {% if admin_login_data %}value="{{ admin_login_data[0] }}"{% endif %}>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="••••••••" {% if admin_login_data %}value="{{ admin_login_data[-1] }}"{% endif %}>
+            </div>
+            <button type="submit" class="btn btn-primary" id="submitButton">Log in</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

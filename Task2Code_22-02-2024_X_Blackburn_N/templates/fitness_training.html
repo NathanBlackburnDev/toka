@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Fitness training advice{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="../static/css/records.css">
+<h1 style="text-align: center; margin-bottom: 2rem; margin-top: 2rem;">Fitness training advice</h1>
+<div class="main-container">
+    <!-- Toka Fitness add -->
+    <div class="sticky-container">
+        <div class="card add1" style="width: 16rem;">
+            <img src="../static/images/newadd.jpg" class="card-img-top" alt="2 people squatting with kettle bells">
+            <div class="card-body">
+            <h5 class="card-title">We recently upgraded our website!</h5>
+            <p class="card-text">We have introduced a new wide variety of features including advice about health living and fitness training, social media features and customisable plans
+            </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="sub-container">
+        <div class="card-container">
+        {% if query %}
+            {% for record in query %}
+                <!-- Bootstrap card -->
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                          <h5 class="card-title">{{ record[1] }}</h5>
+                          <p class="card-text">{{ record[-1] }}</p>
+                          <a href="/fitness_moreinfo/{{ record[0] }}" class="btn btn-primary">More information</a>
+                        </div>
+                    </div>
+            {% endfor %}
+        {% endif %}
+        </div>
+
+        <!-- Load more records -->
+        {% if query_len <= records %}
+            <center>
+                <a href="/loadmore_fitness/{{ records }}" class="btn btn-primary loadmorebtn">Load more</a>
+            </center>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

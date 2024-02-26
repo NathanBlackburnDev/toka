@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Healthy living advice{% endblock %}
+{% block content %}
+
+<link rel="stylesheet" href="../static/css/cards.css">
+
+<div class="main-container">
+    <div class="sub-container">
+        <h1>Healthy living advice</h1>
+        {% if results %}
+            {% for result in results %}
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                    <h5 class="card-title">{{ result[1] }}</h5>
+                    <p class="card-text">{{ result[2] }}</p>
+                    <a href="#" class="btn btn-primary">More information</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <!-- Load more -->
+        {% if query_len <= cards %}
+            <center>
+                <a href="/advice/fitness_training/loadmore/{{ cards }}"></a>
+                <button type="button" class="btn btn-primary">Load more</button>
+            </center>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block title %}Workout plan{% endblock %}
+{% block content %}
+
+<link rel="stylesheet" href="../static/css/workout.css">
+
+<h1 style="text-align: center; margin-top: 1rem; margin-bottom: 1rem;">Your workout plans</h1>
+
+<div class="main-container">
+        <div class="workout-plan">
+            {% if workout_plans %}
+                {% for plan in workout_plans %}
+                    <div class="plan">
+                        <h2>{{ plan[2] }}</h2>
+                        <p>Workout type: {{ plan[3] }}</p>
+                        <p>Workout length: {{ plan[4] }}</p>
+                        <p>Workout intensity /5: {{ plan[5] }}</p>
+                        <p>Time to workout: {{ plan[-1] }}</p>
+                        <p>
+                            <b>Notes:</b>
+                            <br>
+                            {% if plan[-2] %}
+                                {{ plan[-2] }}
+                            {% else %}
+                                <p>No notes!</p>
+                            {% endif %}
+                        </p>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <a style="color: #0b5ed7; text-decoration: none;" href="/update_workout/{{ plan[0] }}">Update</a>
+                            <p>|</p>
+                            <a style="color: #0b5ed7; text-decoration: none;" href="/delete_workout/{{ plan[0] }}"> Delete</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <h2>Create a workout plan to get started</h2>
+            {% endif %}
+        </div>
+        <div class="form-container">
+            <form method="POST">
+
+                <div class="mb-3">
+                    <label for="exampleInputUsername" class="form-label">Workout name</label>
+                    <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="emailHelp" name="workout_name" placeholder="Jogging" {% if workout_plan_data %}value="{{ workout_plan_data[0] }}"{% endif %}>
+                </div>
+
+                <select class="form-select" aria-label="Default select example" name="workout_type">
+                    <option selected value="None">Select workout type</option>
+                    <option value="Running">Running</option>
+                    <option value="Weight Lifting">Weight Lifting</option>
+                    <option value="Cardio">Cardio</option>
+                    <option value="Stregth Training">Stregth Training</option>
+                    <option value="Endurance Training">Endurance Training</option>
+                    <option value="Calisthetics">Calisthetics</option>
+                    <option value="HIIT">HIIT</option>
+                </select>
+
+                <label for="customRange1" class="form-label">Level of intensity (1-5)</label>
+                <input type="range" class="form-range" id="customRange1" min="1" max="5" name="workout_intensity" {% if workout_plan_data %}value="{{ workout_plan_data[2] }}"{% endif %}>
+                
+                <select class="form-select" aria-label="Default select example" name="workout_length">
+                    <option selected value="None">Select workout length</option>
+                    <option value="30 minutes">30 minutes</option>
+                    <option value="60 minutes">60 minutes</option>
+                    <option value="90 minutes">90 minutes</option>
+                    <option value="120 minutes">120 minutes</option>
+                    <option value="150 minutes">150 minutes</option>
+                    <option value="180 minutes">180 minutes</option>
+                    <option value="210 minutes">210 minutes</option>
+                    <option value="210+ minutes">210+ minutes</option>
+                </select>
+
+                <label for="appt-time">Select a workout time:</label>
+                <input id="appt-time" type="time" name="workout_time"/>
+
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Notes (optional)</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="notes" {% if workout_plan_data %}value="{{ workout_plan_data[-1] }}"{% endif %}></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Create plan</button>
+            </form>
+        </div>
+</div>
+
+{% endblock %}

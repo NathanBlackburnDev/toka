@@ -1,0 +1,38 @@
+.main-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    top: 2rem;
+}
+
+.workout-plan {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: auto;
+    height: 28rem;
+    gap: 0.25rem;
+    width: 25%;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.25rem;
+    width: 100%;
+}
+
+.form-container {
+    width: 25%;
+}
+
+.plan {
+    border-bottom: 1px solid black;
+    word-wrap: break-word;
+}
+
+.plan p {
+    margin-bottom: 0 !important;
+}
